@@ -1,0 +1,15 @@
+{
+  "name": "@v-coder/delivery-kit",
+  "version": "0.1.0",
+  "description": "Neutral delivery-channel contract (orders, statuses, availability, menu), menu mapping with Arabic-aware matching, go-live checks, and a simulated delivery platform for tests and demos. A real middleware or platform adapter implements DeliveryConnector once the partner is chosen (ق-ت3).",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" } },
+  "files": ["dist", "CHANGELOG.md"],
+  "engines": { "node": ">=22" },
+  "peerDependencies": { "@v-coder/integration-kit": "^0.1.0" },
+  "devDependencies": { "@v-coder/integration-kit": "workspace:*" },
+  "sideEffects": false
+}

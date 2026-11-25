@@ -1,0 +1,15 @@
+{
+  "name": "@v-coder/connector-paymob",
+  "version": "0.1.0",
+  "description": "Paymob (Accept, Egypt) connector: payment intention and checkout link, signed transaction callback check, transaction confirmation by query, refund. Written from Paymob's public documentation; not yet run against a Paymob sandbox.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" } },
+  "files": ["dist", "CHANGELOG.md"],
+  "engines": { "node": ">=22" },
+  "peerDependencies": { "@v-coder/integration-kit": "^0.1.0" },
+  "devDependencies": { "@v-coder/integration-kit": "workspace:*" },
+  "sideEffects": false
+}
