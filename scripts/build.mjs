@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const tsc = createRequire(join(root, 'package.json')).resolve('typescript/bin/tsc');
 const check = process.argv.includes('--check');
-const order = ['kit-core', 'connector-paymob', 'connector-whatsapp', 'delivery-kit'];
+const order = ['kit-core', 'connector-paymob', 'connector-whatsapp', 'delivery-kit', 'foundation'];
 
 for (const pkg of order) {
   const dir = join(root, 'packages', pkg);

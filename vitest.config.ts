@@ -10,6 +10,7 @@ export default defineConfig({
       '@v-coder/connector-paymob': src('connector-paymob'),
       '@v-coder/connector-whatsapp': src('connector-whatsapp'),
       '@v-coder/delivery-kit': src('delivery-kit'),
+      '@v-coder/foundation': src('foundation'),
     },
   },
   test: {

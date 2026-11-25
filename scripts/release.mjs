@@ -11,7 +11,12 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const packs = join(root, 'packs');
 mkdirSync(packs, { recursive: true });
-const pkgs = ['kit-core', 'connector-paymob', 'connector-whatsapp', 'delivery-kit'];
+const ALL = ['kit-core', 'connector-paymob', 'connector-whatsapp', 'delivery-kit', 'foundation'];
+// `node scripts/release.mjs foundation` packs only the named packages (a released version is immutable, so a release of one new package
+// must not try to pack the others again). With no names, every package is packed, as before.
+const named = process.argv.slice(2).filter((a) => !a.startsWith('-'));
+for (const n of named) if (!ALL.includes(n)) { console.error(`unknown package: ${n} (one of ${ALL.join(', ')})`); process.exit(1); }
+const pkgs = named.length ? named : ALL;
 
 // pnpm is a .cmd shim on Windows and needs a shell; node itself must NOT go through one (its path has a space).
 const run = (cmd, args, cwd = root) => execFileSync(cmd, args, { stdio: 'inherit', cwd, shell: cmd === 'pnpm' && process.platform === 'win32' });

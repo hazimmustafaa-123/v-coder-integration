@@ -10,6 +10,7 @@ this repository holds what is common to all products so it is written once:
 | `@v-coder/connector-paymob` | Paymob (Egypt): payment intention + hosted checkout link, signed callback check, confirmation by query, refund |
 | `@v-coder/connector-whatsapp` | WhatsApp Business Cloud API: templates, text, signed webhooks, delivery statuses |
 | `@v-coder/delivery-kit` | the neutral delivery-channel contract, Arabic-aware menu mapping, go-live checks, a simulated delivery platform |
+| `@v-coder/foundation` | not an integration: the code every product had copied (cross-product study م-2.1) — `/data-io` (CSV/XLSX/DOCX import and export, Arabic-aware cleaning, column matching), `/web-push` (VAPID + RFC 8291), `/attendance-days` (staff-attendance day rules) |
 
 ## Rules (non-negotiable)
 
