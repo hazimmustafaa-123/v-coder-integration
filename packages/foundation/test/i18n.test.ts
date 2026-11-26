@@ -16,8 +16,8 @@ describe('dictionary parity', () => {
     expect(kinds({ a: 'ا', b: 'ب' }, { a: 'A', c: 'C' })).toEqual(['missing-in-en:b', 'missing-in-ar:c']);
   });
 
-  it('catches empty text, a lost placeholder and a lost plural variable', () => {
-    expect(kinds({ a: 'مرحبا {name}', b: 'نص', c: '{n|يوم|أيام}' }, { a: 'Hello', b: '  ', c: '{m|day|days}' })).toEqual(['placeholders:a', 'empty:b', 'plural-variables:c']);
+  it('catches empty text, a lost placeholder and a renamed plural variable', () => {
+    expect(kinds({ a: 'مرحبا {name}', b: 'نص', c: '{n|يوم|أيام}' }, { a: 'Hello', b: '  ', c: '{m|day|days}' })).toEqual(['placeholders:a', 'empty:b', 'placeholders:c']);
   });
 
   it('catches Arabic left inside English and English that is the Arabic text', () => {
@@ -32,6 +32,7 @@ describe('dictionary parity', () => {
   it('reads placeholders and plural variables', () => {
     expect(placeholdersOf('{b} and {a} and {a}')).toEqual(['a', 'b']);
     expect(pluralVariablesOf('{n|one|many} {count}')).toEqual(['n']);
+    expect(placeholdersOf('{n|one|many} {count}')).toEqual(['count', 'n']);
   });
 });
 

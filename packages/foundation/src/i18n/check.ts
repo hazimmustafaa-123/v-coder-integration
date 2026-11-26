@@ -6,7 +6,7 @@
  */
 export type Dictionary = Readonly<Record<string, string>>;
 
-export type ProblemKind = 'missing-in-en' | 'missing-in-ar' | 'empty' | 'placeholders' | 'plural-variables' | 'arabic-in-en' | 'same-as-ar';
+export type ProblemKind = 'missing-in-en' | 'missing-in-ar' | 'empty' | 'placeholders' | 'arabic-in-en' | 'same-as-ar';
 
 export interface DictionaryProblem {
   kind: ProblemKind;
@@ -27,10 +27,10 @@ const ANY_LETTER = /\p{L}/u;
 /** True when the text holds an Arabic letter. */
 export const hasArabic = (text: string): boolean => ARABIC.test(text);
 
-/** The `{name}` placeholders of a message, sorted and without repeats (plural tokens are not placeholders). */
+/** The variables a message uses: `{name}` placeholders and the variable of a plural token `{n|a|b}`, sorted and without repeats. */
 export function placeholdersOf(text: string): string[] {
   const out = new Set<string>();
-  for (const m of text.matchAll(/\{(\w+)\}/g)) out.add(m[1]!);
+  for (const m of text.matchAll(/\{(\w+)[|}]/g)) out.add(m[1]!);
   return [...out].sort();
 }
 
@@ -63,9 +63,6 @@ export function checkDictionaries(ar: Dictionary, en: Dictionary, options: Check
     }
     if (!same(placeholdersOf(a), placeholdersOf(e))) {
       add('placeholders', key, `«${key}»: placeholders differ — Arabic {${placeholdersOf(a).join(',')}} vs English {${placeholdersOf(e).join(',')}}`);
-    }
-    if (!same(pluralVariablesOf(a), pluralVariablesOf(e))) {
-      add('plural-variables', key, `«${key}»: plural tokens differ — Arabic [${pluralVariablesOf(a).join(',')}] vs English [${pluralVariablesOf(e).join(',')}]`);
     }
     if (hasArabic(e) && !allowArabic.has(key)) add('arabic-in-en', key, `«${key}»: the English text contains Arabic letters`);
     if (e === a && ANY_LETTER.test(a) && !allowSame.has(key)) add('same-as-ar', key, `«${key}»: the English text is the Arabic text (not translated)`);
