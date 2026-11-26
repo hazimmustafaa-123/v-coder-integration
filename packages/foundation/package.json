@@ -1,19 +1,48 @@
 {
   "name": "@v-coder/foundation",
-  "version": "0.1.0",
-  "description": "V CODER shared foundation: pieces every product had copied or written again — spreadsheet import/export (data-io), web push (VAPID, RFC 8291), and the staff-attendance day rules. No database, no business knowledge, no runtime dependency.",
+  "version": "0.2.0",
+  "description": "V CODER shared foundation: pieces every product had copied or written again — spreadsheet import/export (data-io), web push (VAPID, RFC 8291), the staff-attendance day rules, and the language checks (dictionary parity and the Arabic-in-code ratchet, VC-STD-15). No database, no business knowledge, no runtime dependency.",
   "license": "UNLICENSED",
   "private": false,
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
-    "./data-io": { "types": "./dist/data-io/index.d.ts", "default": "./dist/data-io/index.js" },
-    "./web-push": { "types": "./dist/web-push.d.ts", "default": "./dist/web-push.js" },
-    "./attendance-days": { "types": "./dist/attendance-days.d.ts", "default": "./dist/attendance-days.js" }
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./data-io": {
+      "types": "./dist/data-io/index.d.ts",
+      "default": "./dist/data-io/index.js"
+    },
+    "./web-push": {
+      "types": "./dist/web-push.d.ts",
+      "default": "./dist/web-push.js"
+    },
+    "./attendance-days": {
+      "types": "./dist/attendance-days.d.ts",
+      "default": "./dist/attendance-days.js"
+    },
+    "./i18n": {
+      "types": "./dist/i18n/index.d.ts",
+      "default": "./dist/i18n/index.js"
+    },
+    "./i18n/scan": {
+      "types": "./dist/i18n/scan.d.ts",
+      "default": "./dist/i18n/scan.js"
+    }
   },
-  "files": ["dist", "CHANGELOG.md", "LICENSE.md"],
-  "engines": { "node": ">=22" },
-  "sideEffects": false
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "LICENSE.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "sideEffects": false,
+  "bin": {
+    "v-coder-i18n-scan": "./dist/i18n/cli.js"
+  }
 }
